@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h2><i class="fas fa-users me-2"></i>List of smart guys</h2>
+
+  <button class="btn btn-primary mb-3 float-end" (click)="openForm()">
+    <i class="fas fa-user-plus"></i> Add smartface
+  </button>
+
+  <app-user-list
+    [users]="users"
+    (edit)="openForm($event)"
+    (delete)="deleteUser($event)"
+  ></app-user-list>
+
+  <!-- Modal -->
+  <div class="modal fade show" tabindex="-1" style="display: block;" *ngIf="showForm">
+    <div class="modal-dialog">
+      <div class="modal-content bg-white">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            {{ currentUser?.id ? 'Edit brainiac' : 'Add new brainiac' }}
+          </h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeForm()"></button>
+        </div>
+        <div class="modal-body">
+          <app-user-form
+            [user]="currentUser"
+            (save)="onSave($event)"
+            (cancel)="closeForm()"
+          ></app-user-form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+  </div>
+</div>
