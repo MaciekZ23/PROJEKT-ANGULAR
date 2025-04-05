@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UserRowComponent } from '../user-row/user-row.component';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-list',
-  imports: [],
+  imports: [CommonModule, UserRowComponent],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss'
+  styleUrls: ['./user-list.component.scss'],
+  standalone: true
 })
-export class UserListComponent {
 
+export class UserListComponent {
+  @Input() users: any[] = [];
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<number>();
+
+  onEdit(user: any) {
+    this.edit.emit(user);
+  }
+
+  onDelete(userId: number) {
+    this.delete.emit(userId);
+  }
 }

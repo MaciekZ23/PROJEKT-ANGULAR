@@ -6,7 +6,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   selector: 'app-root',
   imports: [RouterOutlet, NavbarComponent, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true
 })
 export class AppComponent {
   title = 'frontend';
