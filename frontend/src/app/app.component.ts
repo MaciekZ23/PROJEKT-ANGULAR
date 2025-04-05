@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   styleUrls: ['./app.component.scss'],
   standalone: true
 })
+
 export class AppComponent {
   title = 'frontend';
 }

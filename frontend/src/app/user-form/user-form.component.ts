@@ -8,8 +8,9 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
+
 export class UserFormComponent {
-  @Input() user: any = null; // jeśli istnieje, to edycja
+  @Input() user: any = null;
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
 

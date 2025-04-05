@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { UserFormComponent } from '../user-form/user-form.component';
 
-
 @Component({
   selector: 'app-user-table',
   standalone: true,
@@ -26,6 +25,7 @@ export class UserTableComponent implements OnInit {
     this.loadUsers();
   }
 
+  // Zaladowanie uzytkownikow z API
   loadUsers()
   {
     this.userService.getUsers().subscribe((data) => {
@@ -33,17 +33,19 @@ export class UserTableComponent implements OnInit {
     });
   }
 
+  // Otworz modal do dodania
   onAdd() {
     this.selectedUser = null;
     this.showModal = true;
   }
-
+  // Otworz modal do edycji
   onEdit(user: any)
   {
     this.selectedUser = { ...user };
     this.showModal = true;
   }
 
+  // Usun uzytkownika po kliknieciu ikony kosza
   onDelete(userId: number) {
     this.userService.deleteUser(userId).subscribe(() => {
       this.users = this.users.filter(u => u.id !== userId);
@@ -55,6 +57,7 @@ export class UserTableComponent implements OnInit {
     this.showModal = false;
   }
 
+  // Zapisz dane z formularza
   onSaveUser(user: any) 
   {
     if (user.id) 
