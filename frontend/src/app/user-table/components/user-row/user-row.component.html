@@ -7,12 +7,12 @@
 <td class="align-middle">{{ user.last_name }}</td>
 <td class="align-middle">{{ user.email }}</td>
 
-<td class="align-middle">
-  <div class="d-flex gap-1"> 
-    <button class="btn btn-sm border-0 bg-transparent text-bordo me-1" style="color: #44001A;" (click)="edit.emit(user)">
+<td class="align-items-center text-end">
+  <div class="d-inline-flex gap-2">
+    <button class="btn btn-sm border-0 bg-transparent custom" (click)="edit.emit(user)">
       <i class="fas fa-pen-to-square"></i>
     </button>
-    <button class="btn btn-sm border-0 bg-transparent" style="color: #44001A;" (click)="remove.emit(user.id)">
+    <button class="btn btn-sm border-0 bg-transparent custom" (click)="remove.emit(user.id)">
       <i class="fas fa-trash-can"></i>
     </button>
   </div>

@@ -1,19 +1,16 @@
 <table class="table table-striped table-hover align-middle">
-  <thead style="background-color: #B15B5B;" class="text-white">
-    <tr>
+  <thead>
+    <tr class="table-header">
       <th scope="col" style="width: 90px;">Id</th>
       <th scope="col">First name</th>
       <th scope="col">Last name</th>
-      <th scope="col">Email</th>
+      <th scope="col">E-mail</th>
+      <th scope="col"></th>
     </tr>
   </thead>
+
   <tbody>
-    <tr
-      *ngFor="let user of users; index as i"
-      app-user-row
-      [user]="user"
-      [index]="i + 1"
-      (edit)="onEdit(user)"
+    <tr *ngFor="let user of users; index as i" app-user-row [user]="user" [index]="i + 1" (edit)="onEdit(user)"
       (remove)="onDelete(user.id)">
     </tr>
   </tbody>

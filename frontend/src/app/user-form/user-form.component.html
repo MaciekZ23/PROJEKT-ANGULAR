@@ -1,25 +1,40 @@
-<div class="modal fade show d-block animate__animated animate__fadeInDown" tabindex="-1" role="dialog">
+<div class="modal fade" tabindex="-1" role="dialog" #modal>
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header pb-2 pt-3">
                 <h5 class="modal-title"> Add new brainiac</h5>
-                <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
+                <button type="button" class="btn-close btn-sm fs-6" aria-label="Close" (click)="onClose()"></button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body pt-3">
                 <form #userForm="ngForm">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label class="form-label">First name <span class="text-danger">*</span></label>
-                            <input [(ngModel)]="firstName" name="firstName" required type="text" class="form-control" placeholder="Type in the first name">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label small">
+                                First name
+                                <span class="text-danger"
+                                    *ngIf="userForm.controls['firstName']?.errors?.['required']">*</span>
+                            </label>
+                            <input [(ngModel)]="firstName" name="firstName" required type="text" class="form-control"
+                                placeholder="Type in the first name">
                         </div>
-                        <div class="col">
-                            <label class="form-label"> Last name <span class="text-danger">*</span></label>
-                            <input [(ngModel)]="lastName" name="lastName" required type="text" class="form-control" placeholder="Type in the last name">
+                        <div class="col mb-3">
+                            <label class="form-label small">
+                                Last name
+                                <span class="text-danger"
+                                    *ngIf="userForm.controls['lastName']?.errors?.['required']">*</span>
+                            </label>
+                            <input [(ngModel)]="lastName" name="lastName" required type="text" class="form-control"
+                                placeholder="Type in the last name">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">E-mail <span class="text-danger">*</span></label>
-                            <input [(ngModel)]="email" name="email" required type="email" class="form-control" placeholder="Type in the email">
+                        <div class="mb-4">
+                            <label class="form-label small">
+                                E-mail
+                                <span class="text-danger"
+                                    *ngIf="userForm.controls['email']?.errors?.['required']">*</span>
+                            </label>
+                            <input [(ngModel)]="email" name="email" required type="email" class="form-control"
+                                placeholder="Type in the email">
                         </div>
                     </div>
                 </form>
