@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto text-end">
                 <li class="nav-item">
-                    <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
+                    <a [routerLink]="'/'" routerLinkActive="active" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/users" routerLinkActive="active" class="nav-link">List of smart guys</a>
+                    <a [routerLink]="'/users'" routerLinkActive="active" class="nav-link">List of smart guys</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Help</a>

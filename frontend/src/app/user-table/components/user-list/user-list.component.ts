@@ -2,10 +2,11 @@ import { Component, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRowComponent } from '../user-row/user-row.component';
 import { EventEmitter } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
-  imports: [CommonModule, UserRowComponent],
+  imports: [CommonModule, UserRowComponent, RouterModule],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
   standalone: true

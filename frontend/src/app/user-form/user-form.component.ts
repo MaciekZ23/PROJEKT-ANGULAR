@@ -7,7 +7,8 @@ declare const bootstrap: any;
   selector: 'app-user-form',
   imports: [CommonModule, FormsModule],
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  standalone: true
 })
 
 export class UserFormComponent implements AfterViewInit {
