@@ -13,9 +13,6 @@
     <app-user-list [users]="users" (edit)="onEdit($event)" (delete)="onDelete($event)">
     </app-user-list>
 
-    @if(showModal)
-    {
-        <app-user-form [user]="selectedUser" (close)="onCloseModal()" (save)="onSaveUser($event)">
-        </app-user-form>
-    }
+   <app-user-form [user]="selectedUser" (close)="onCloseModal()" (save)="onSaveUser($event)">
+    </app-user-form>
 </div>

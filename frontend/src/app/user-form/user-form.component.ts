@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ViewChild, SimpleChanges, ElementRef, AfterViewInit, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 declare const bootstrap: any;
@@ -11,7 +11,7 @@ declare const bootstrap: any;
   standalone: true
 })
 
-export class UserFormComponent implements AfterViewInit {
+export class UserFormComponent implements AfterViewInit, OnChanges {
   @Input() user: any = null;
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
@@ -23,21 +23,44 @@ export class UserFormComponent implements AfterViewInit {
   lastName = '';
   email = '';
 
-  ngOnInit() {
-    if (this.user) {
-      this.firstName = this.user.first_name;
-      this.lastName = this.user.last_name;
-      this.email = this.user.email;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['user']) {
+      this.firstName = this.user?.first_name || '';
+      this.lastName = this.user?.last_name || '';
+      this.email = this.user?.email || '';
     }
   }
 
   ngAfterViewInit() {
-    this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
+    this.initModal();
+  }
+
+  private initModal()
+  {
+    this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement, {
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    this.modalElement.nativeElement.addEventListener('hidden.bs.modal', () => {
+      this.modalInstance = null;
+    });
+  }
+
+  open()
+  {
+    if(!this.modalInstance)
+    {
+      this.initModal();
+    }
     this.modalInstance.show();
   }
 
   onClose() {
-    this.modalInstance.hide();
+    if(this.modalInstance)
+    {
+      this.modalInstance.hide();
+    }
     this.close.emit();
   }
 
@@ -50,6 +73,11 @@ export class UserFormComponent implements AfterViewInit {
       email: this.email,
       avatar: this.user?.avatar || `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`
     };
+    
+    if(this.modalInstance)
+    {
+      this.modalInstance.hide();
+    }
     this.save.emit(user);
   }
 }
