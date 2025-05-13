@@ -1,10 +1,10 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>
-            <i class="fa-solid fa-user-group me-2" style="color: #44001A;"></i>
+            <i class="fa-solid fa-user-group me-2 text-primary"></i>
             List of smart guys
         </h2>
-        <button class="btn d-flex align-items-center text-white" style="background-color: #44001A;" (click)="onAdd()">
+        <button class="btn btn-primary d-flex align-items-center text-white" (click)="onAdd()">
             <i class="fa-solid fa-plus me-2"></i>
             <span>Add brainiac</span>
         </button>
@@ -13,6 +13,9 @@
     <app-user-list [users]="users" (edit)="onEdit($event)" (delete)="onDelete($event)">
     </app-user-list>
 
-   <app-user-form [user]="selectedUser" (close)="onCloseModal()" (save)="onSaveUser($event)">
+    <app-user-form #userFormComponent [user]="selectedUser" (close)="onCloseModal()" (save)="onSaveUser($event)">
     </app-user-form>
+
+    <app-confirm-modal #confirmModal (confirm)="confirmDelete()" (cancel)="onCancelDelete()">
+    </app-confirm-modal>
 </div>

@@ -8,11 +8,11 @@
 <td class="align-middle">{{ user.email }}</td>
 
 <td class="align-middle text-end">
-  <div class="d-inline-flex align-items-center gap-2">
-    <button class="btn btn-sm border-0 bg-transparent custom" (click)="edit.emit(user)">
+  <div class="d-inline-flex align-items-center">
+    <button class="btn btn-sm border-0 bg-transparent text-primary" (click)="edit.emit(user)">
       <i class="fas fa-pen-to-square"></i>
     </button>
-    <button class="btn btn-sm border-0 bg-transparent custom" (click)="remove.emit(user.id)">
+    <button class="btn btn-sm border-0 bg-transparent text-primary" (click)="remove.emit(user.id)">
       <i class="fas fa-trash-can"></i>
     </button>
   </div>

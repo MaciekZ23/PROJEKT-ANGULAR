@@ -4,6 +4,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-user-table',
@@ -13,26 +14,29 @@ import { UserFormComponent } from '../user-form/user-form.component';
     UserListComponent,
     HttpClientModule,
     UserFormComponent,
+    ConfirmModalComponent
   ],
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
   users: any[] = [];
-  showModal = false;
   selectedUser: any = null;
+  private userIdToDelete: number | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   @ViewChild(UserFormComponent) userFormComponent!: UserFormComponent;
+  @ViewChild(ConfirmModalComponent) confirmModal!: ConfirmModalComponent;
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
   loadUsers() {
-    this.userService.getUsers().subscribe((data) => {
-      this.users = data;
+    this.userService.getUsers().subscribe({
+      next: (data) => this.users = data,
+      error: () => alert('Blad podczas pobierania uzytkownikow')
     });
   }
 
@@ -47,22 +51,47 @@ export class UserTableComponent implements OnInit {
   }
 
   onDelete(userId: number) {
-    this.userService.deleteUser(userId).subscribe(() => {
-      this.users = this.users.filter((u) => u.id !== userId);
-    });
+    this.userIdToDelete = userId;
+    this.confirmModal.open();
   }
 
-  onCloseModal() {}
+  confirmDelete() {
+    if (this.userIdToDelete !== null) {
+      this.userService.deleteUser(this.userIdToDelete).subscribe({
+        next: () => {
+          this.users = this.users.filter(u => u.id !== this.userIdToDelete);
+          this.userIdToDelete = null;
+        },
+        error: () => {
+          alert('Nie udalo sie usunac uzytkownika');
+          this.userIdToDelete = null;
+        }
+      });
+    }
+  }
+
+  onCancelDelete() {
+    this.userIdToDelete = null;
+  }
+
+  onCloseModal() { }
 
   onSaveUser(user: any) {
     if (user.id) {
-      this.userService.updateUser(user).subscribe(() => {
-        const index = this.users.findIndex((u) => u.id === user.id);
-        if (index > -1) this.users[index] = user;
+      this.userService.updateUser(user).subscribe({
+        next: () => {
+          const index = this.users.findIndex(u => u.id === user.id);
+          if (index > -1) {
+            this.users[index] = user;
+          }
+        },
+        error: () => alert('Blad podczas aktualizacji uzytkownika')
       });
-    } else {
-      this.userService.addUser(user).subscribe((newUser) => {
-        this.users.push(newUser);
+    }
+    else {
+      this.userService.addUser(user).subscribe({
+        next: (newUser) => this.users.push(newUser),
+        error: () => alert('Blad podczas dodawania uzytkownika')
       });
     }
   }

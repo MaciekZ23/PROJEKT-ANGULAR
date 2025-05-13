@@ -1,0 +1,17 @@
+<div class="modal fade" tabindex="-1" role="dialog" #modal>
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header pb-2 pt-3">
+                <h5 class="modal-title">Potwierdzenie</h5>
+                <button type="button" class="btn-close btn-sm fs-6" aria-label="Close" (click)="onCancel()"></button>
+            </div>
+            <div class="modal-body">
+                <p>Czy na pewno chcesz usunac te osobe z listy?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" (click)="onCancel()">Anuluj</button>
+                <button type="button" class="btn btn-primary text-white" (click)="onConfirm()">Usuń</button>
+            </div>
+        </div>
+    </div>
+</div>

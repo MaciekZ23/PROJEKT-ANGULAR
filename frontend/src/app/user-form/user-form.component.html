@@ -14,7 +14,7 @@
                                 First name
                                 @if(userForm.controls['firstName']?.errors?.['required'])
                                 {
-                                    <span class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                                 }
                             </label>
                             <input [(ngModel)]="firstName" name="firstName" required type="text" class="form-control"
@@ -25,7 +25,7 @@
                                 Last name
                                 @if(userForm.controls['lastName']?.errors?.['required'])
                                 {
-                                    <span class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                                 }
                             </label>
                             <input [(ngModel)]="lastName" name="lastName" required type="text" class="form-control"
@@ -36,7 +36,7 @@
                                 E-mail
                                 @if(userForm.controls['email']?.errors?.['required'])
                                 {
-                                    <span class="text-danger">*</span>
+                                <span class="text-danger">*</span>
                                 }
                             </label>
                             <input [(ngModel)]="email" name="email" required type="email" class="form-control"
@@ -47,8 +47,8 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn custom-close" (click)="onClose()">Close</button>
-                <button class="btn text-white custom-save" (click)="onSave()">Save</button>
+                <button class="btn btn-danger text-white" (click)="onClose()">Close</button>
+                <button class="btn btn-primary text-white" (click)="onSave()">Save</button>
             </div>
         </div>
     </div>

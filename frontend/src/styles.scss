@@ -6,3 +6,8 @@ body {
 .navbar-brand {
     font-family: 'Architects Daughter', cursive;
 }
+
+$primary: #44001A;
+$danger: #B15B5B;
+
+@import 'bootstrap/scss/bootstrap';

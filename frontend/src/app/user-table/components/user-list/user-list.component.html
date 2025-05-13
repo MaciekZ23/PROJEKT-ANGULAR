@@ -10,14 +10,9 @@
   </thead>
 
   <tbody>
-  @for (user of users; track user.id; let i = $index) {
-    <tr
-      app-user-row
-      [user]="user"
-      [index]="i + 1"
-      (edit)="onEdit(user)"
-      (remove)="onDelete(user.id)">
+    @for (user of users; track user.id; let i = $index) {
+    <tr app-user-row [user]="user" [index]="i + 1" (edit)="onEdit(user)" (remove)="onDelete(user.id)">
     </tr>
-  }
-</tbody>
+    }
+  </tbody>
 </table>
