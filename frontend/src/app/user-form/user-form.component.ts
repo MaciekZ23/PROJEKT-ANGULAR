@@ -47,6 +47,13 @@ export class UserFormComponent implements AfterViewInit, OnChanges {
     });
   }
 
+  private resetForm()
+  {
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+  }
+
   open()
   {
     if(!this.modalInstance)
@@ -57,6 +64,7 @@ export class UserFormComponent implements AfterViewInit, OnChanges {
   }
 
   onClose() {
+    this.resetForm();
     if(this.modalInstance)
     {
       this.modalInstance.hide();
@@ -73,6 +81,7 @@ export class UserFormComponent implements AfterViewInit, OnChanges {
       email: this.email,
       avatar: this.user?.avatar || `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70) + 1}`
     };
+    this.resetForm();
     
     if(this.modalInstance)
     {

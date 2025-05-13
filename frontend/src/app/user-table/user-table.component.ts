@@ -30,19 +30,17 @@ export class UserTableComponent implements OnInit {
     this.loadUsers();
   }
 
-  // Zaladowanie uzytkownikow z API
   loadUsers() {
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
     });
   }
 
-  // Otworz modal do dodania
   onAdd() {
     this.selectedUser = null;
     this.userFormComponent.open();
   }
-  // Otworz modal do edycji
+
   onEdit(user: any) {
     this.selectedUser = { ...user };
     this.userFormComponent.open();
@@ -58,13 +56,11 @@ export class UserTableComponent implements OnInit {
 
   onSaveUser(user: any) {
     if (user.id) {
-      // edycja
       this.userService.updateUser(user).subscribe(() => {
         const index = this.users.findIndex((u) => u.id === user.id);
         if (index > -1) this.users[index] = user;
       });
     } else {
-      // dodanie
       this.userService.addUser(user).subscribe((newUser) => {
         this.users.push(newUser);
       });
