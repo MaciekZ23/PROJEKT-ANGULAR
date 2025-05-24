@@ -12,7 +12,6 @@ import { EventEmitter } from '@angular/core';
 
 export class UserRowComponent {
   @Input() user: any;
-  @Input() index!: number;
 
   @Output() edit = new EventEmitter<any>();
   @Output() remove = new EventEmitter<number>();
