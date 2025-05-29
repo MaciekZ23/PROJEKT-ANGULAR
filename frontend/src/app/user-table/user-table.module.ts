@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UserTableComponent } from './user-table.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserRowComponent } from './components/user-row/user-row.component';
 
+console.log('UserTableModule has been lazy-loaded');
+
 const routes: Routes = [
-  {
-    path: '',
-    component: UserTableComponent,
-  }
+  { path: '', component: UserTableComponent }
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
     RouterModule.forChild(routes),
-    UserTableComponent,
-    UserListComponent,
-    UserRowComponent
+    UserTableComponent
   ]
 })
-export class UserTableModule {}
+export class UserTableModule { }
